@@ -1,0 +1,33 @@
+<? const url = getScriptUrl();  ?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>La Trobe University Assessment Forms </title>
+      <base target="_top">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  </head>
+  <body style="padding: 10px;">
+    <h1 align="center">LA TROBE UNIVERSITY</h1>
+    <p align="center">School of Computing, Engineering and Mathematical Sciences</p>
+    <hr/>
+    <h4 align="center">Forms</h4>
+    <br/>
+    <div   class="container">
+      <ol id="form_list">
+        <li id="vetting_process_1"><a href='<?=url?>?page=StartVetting' target="_top">Start Vetting</a></li>
+        <li id="vetting_form"><a href='<?=url?>?page=Vetting' target="_top">Vetting</a></li>
+         <li id="moderation_form_1"><a href='<?=url?>?page=StartModeration' target="_top">Start Moderation</a></li>
+        <li id="moderation_form"><a href='<?=url?>?page=Moderation' target="_top">Moderation</a></li>
+        <li id="assurance_form"><a href='<?=url?>?page=Assurance' target="_top">Assurance</a></li>
+        <li id="final_review_form"><a href='<?=url?>?page=FinalReview' target="_top">Final Review</a></li>
+        <br/>
+      </ol>
+    </div>
+  </form>
+  <!-- <a href="<?= ScriptApp.getService().getUrl() + "?item=xyz" ?>" >Item xyz link</a> -->
+ 
+</div>
+  </body>
+ 
+</html>
