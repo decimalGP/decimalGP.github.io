@@ -9,10 +9,14 @@
     Loading...
   </body>
   <script>
-    // var pathname = window.location.pathname;
-    // pathname = pathname.slice(1);
-    var pathname = "StartVetting";
     var url = "https://script.google.com/macros/s/AKfycbws9hpiEJvDFiDhiPqTN9bbBDl8UggCUbExLQUG9m_HMPJMnJtLnvSuwMRaq2E4OJgI/exec";
-    window.open(url + "?page=" + pathname, "_top");
+    var pathname = window.location.pathname;
+    if (pathname.length > 1) {
+      pathname = pathname.slice(1);
+      window.open(url + "?page=" + pathname, "_top");
+    }
+    else {
+      window.open(url, "_top");
+    }
   </script>
 </html>
