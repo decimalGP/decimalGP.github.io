@@ -7,10 +7,12 @@
   </head>
   <body>
     Loading...
-    <p id="test"></p>
   </body>
   <script>
-    // window.open("https://script.google.com/macros/s/AKfycbws9hpiEJvDFiDhiPqTN9bbBDl8UggCUbExLQUG9m_HMPJMnJtLnvSuwMRaq2E4OJgI/exec", "_top");
-    document.getElementById("test").innerHTML = window.location.pathname;
+    // var pathname = window.location.pathname;
+    // pathname = pathname.slice(1);
+    var pathname = "StartVetting";
+    var url = "https://script.google.com/macros/s/AKfycbws9hpiEJvDFiDhiPqTN9bbBDl8UggCUbExLQUG9m_HMPJMnJtLnvSuwMRaq2E4OJgI/exec";
+    window.open(url + "?page=" + pathname, "_top");
   </script>
 </html>
