@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inner Join</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- Code Highlight -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  
+  <body>
+    <div class="container-fluid pt-4 px-5">
+      <h3 class="text-center">Inner Join</h3>
+      <br>
+      <p>
+        A <code>JOIN</code> clause is used to combine rows from two or more tables, based on a related column between them.
+      </p>
+
+      <!-- Preserved format -->
+      <pre class="prettyprint lang-sql py-3">
+    select * 
+    from books b
+    <mark>inner join authors a</mark> 
+    where b.authorID = a.ID;</pre>
+      <!-- Preserved format end -->
+
+      <div class="row">
+          <div class="col">
+            <h5>Books</h5>
+            <table id="books" class="draggableTable"></table>
+          </div>
+
+          <div class="col">
+            <h5>Authors</h5>
+            <table id="authors"  class="draggableTable"></table>
+          </div>
+      </div>
+
+      <br>
+  
+      <div>
+        <h5>Joined Table</h5>
+        <table id="joinedTable" class="droppableTable"></table>  
+      </div>
+
+      <br>
+
+      <div class="container-fluid border border-dark border-1 pt-2 px-4 mb-4">
+        <code>
+          <b id="errorListTitle"></b><br>
+          <ul id="errorList"></ul>
+        </code>
+      </div>
+
+    </div>
+  </body>
+
+  <script src="table.js"></script>
+  <script src="source_table.js"></script>
+  <script src="target_table.js"></script>
+  <script src="error_list.js"></script>
+  <script>
+    const sourceTable1 = new SourceTable(
+      [
+        ["ID", "Title", "Release Year", "Author ID"],
+        ["1A512", "Dune", "1965", "1125"],
+        ["5B538", "The Three-Body Problem", "2008", "3717"],
+        ["7C389", "Six Wakes", "1965", "5942"],
+      ],
+      document.getElementById("books")
+    );
+
+    
+    const sourceTable2 = new SourceTable(
+      [
+        ["ID", "Name", "Nationality"],
+        ["1125", "Frank Herbert", "American"],
+        ["3717", "Liu Cixin", "Chinese"],
+        ["5942", "Mur Lafferty", "American"],
+      ],
+      document.getElementById("authors")
+    );
+
+    const targetTable = new TargetTable(
+      document.getElementById("joinedTable"),
+      [sourceTable1, sourceTable2]
+    );
+
+    const errorList = new ErrorList(
+      document.getElementById("errorList"),
+      document.getElementById("errorListTitle")
+    );
+
+    errorList.addError(2, "message", "hint 2");
+    errorList.addError(3, "message", "hint 3");
+    errorList.addError(5, "message", "hint 5");
+
+    errorList.removeError(3);
+  </script>
+</html>
