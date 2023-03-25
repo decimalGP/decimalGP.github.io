@@ -1,9 +1,11 @@
 class SourceTable extends Table {
-  constructor(data, table) {
+  constructor(data, table, errorList) {
     super(data, table);
 
     this.initHTML();
     
+    this.errorList = errorList;
+
     this.hasDraggingStarted = false;
     this.mouseToElementX = 0;
     this.mouseToElementY = 0;
@@ -43,8 +45,6 @@ class SourceTable extends Table {
   
     document.addEventListener('mousemove', this.mouseMoveListener);
     document.addEventListener('mouseup', this.mouseUpListener);
-
-
   }
 
   mouseMoveHandler(event) {
@@ -100,6 +100,8 @@ class SourceTable extends Table {
     this.targetRow = targetRow;
     this.targetTable = targetTable;
 
+    this.targetRowID = [].slice.call(this.targetTable.querySelectorAll('tr')).indexOf(this.targetRow);
+
     return true;
   }
 
@@ -117,33 +119,13 @@ class SourceTable extends Table {
 
     if (!this.updateTarget(event)) return;
 
-    if (this.table.id === "books") {
-      for (let i=0; i<4; ++i) 
-        this.targetRow.cells[i].innerHTML = this.draggingElement.cells[i].innerHTML;
-    } 
-    else {
-      for (let i=0; i<3; ++i) 
-        this.targetRow.cells[i+4].innerHTML = this.draggingElement.cells[i].innerHTML;
-    }
-
-    if (this.targetRow.cells[3].innerHTML === "-" || this.targetRow.cells[4].innerHTML == "-") {
-        this.targetRow.classList.remove("incorrect");
-        this.targetRow.classList.remove("correct");
-    }
-    else {
-      if (this.targetRow.cells[3].innerHTML === this.targetRow.cells[4].innerHTML) {
-        this.targetRow.classList.add("correct");
-        this.targetRow.classList.remove("incorrect");
-      }
-      else {
-        this.targetRow.classList.add("incorrect");
-        this.targetRow.classList.remove("correct");
-      }
-    }
+    this.updateTargetRow();
 
     this.mouseToElementX = null;
     this.mouseToElementY = null;
     this.draggingElement = null;
   }
 
+  /// Override in child classes
+  updateTargetRow() {}
 }

@@ -1,7 +1,7 @@
 class ErrorList {
   /// list = html list
   constructor(list, listTitle) {
-    this.errors = [];
+    this.errors = {};
     this.list = list;
     this.listTitle = listTitle;
 
@@ -25,7 +25,9 @@ class ErrorList {
   generateErrorList() {
     this.list.innerHTML = '';
 
-    if (this.errors.length == 0) {
+    let errorsMap = Object.entries(this.errors);
+
+    if (errorsMap.length == 0) {
       this.listTitle.innerHTML = "No error."
       this.listTitle.classList.remove("text-danger");
       this.listTitle.classList.add("text-success");
@@ -37,11 +39,11 @@ class ErrorList {
       this.listTitle.classList.add("text-danger");
     }
 
-    for (let rowID=0; rowID<this.errors.length; ++rowID) {
-      if (this.errors[rowID] == null) continue;
+    for (const [rowID, value] of errorsMap) {
+      if (value == null) continue;
 
-      let message = this.errors[rowID].message;
-      let hint = this.errors[rowID].hint;
+      let message = value.message;
+      let hint = value.hint;
 
       let messageNode = document.createElement("li");
       messageNode.innerHTML = message;
