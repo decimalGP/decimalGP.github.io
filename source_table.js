@@ -59,6 +59,7 @@ class SourceTable extends Table {
     this.draggingElement.style.left = `${event.pageX - this.mouseToElementX}px`;
     this.draggingElement.style.cursor = 'grabbing';
 
+    // Add highlighter to target row
     if (!this.updateTarget(event)) return;
     this.targetRow.classList.add('selectedRow');    
   }
