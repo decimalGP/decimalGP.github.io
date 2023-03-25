@@ -1,0 +1,40 @@
+table, td, th {
+  border: 1px solid black;
+  text-align: center;
+}
+
+.draggableTable {
+  cursor: grab;
+  user-select: none;
+}
+
+th {
+  cursor: default;
+}
+
+.droppableTable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.correct {
+  background-color: rgb(167, 243, 54);
+}
+
+.incorrect {
+  background-color: rgb(233, 67, 67);
+}
+
+mark {
+  background-color:yellow;
+}
+
+.selectedRow {
+  border-color: rgb(89, 162, 214);
+  border-width: 4px;
+}
+
+th,td {
+  padding-left: 4px;
+  padding-right: 4px;
+}
