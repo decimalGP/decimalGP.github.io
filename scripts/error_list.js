@@ -17,7 +17,7 @@ class ErrorList {
   }
 
   removeError(rowID) {
-    this.errors[rowID] = null;
+    delete this.errors[rowID];
 
     this.generateErrorList();
   }
