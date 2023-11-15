@@ -3,6 +3,17 @@ table, td, th {
   text-align: center;
 }
 
+.box {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.info {
+  color:rgb(89, 162, 214);
+}
+
 .draggableTable {
   cursor: grab;
   user-select: none;

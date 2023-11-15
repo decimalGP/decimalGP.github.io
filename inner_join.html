@@ -15,6 +15,10 @@
   </head>
   
   <body>
+    <div class="box">
+      <code class="info">(!) Drag the rows of each source table to the target table.</code>
+    </div>
+    
     <div class="container-fluid pt-4 px-5">
       <h3 class="text-center">Inner Join</h3>
       <br>
@@ -24,9 +28,8 @@
 
       <!-- Preserved format -->
       <pre class="prettyprint lang-sql py-3">
-    select * 
-    from books b
-    <mark>inner join authors a</mark> 
+    select *
+    from books b, authors a
     where b.authorID = a.ID;</pre>
       <!-- Preserved format end -->
 
@@ -57,7 +60,6 @@
           <ul id="errorList"></ul>
         </code>
       </div>
-
     </div>
   </body>
 
@@ -76,7 +78,7 @@
 
     const sourceTable1 = new InnerJoinSourceTable(
       [
-        ["ID", "Title", "Release Year", "Author ID"],
+        ["ID", "Title", "ReleaseYear", "AuthorID"],
         ["1A512", "Dune", "1965", "1125"],
         ["5B538", "The Three-Body Problem", "2008", "3717"],
         ["7C389", "Six Wakes", "1965", "5942"],
