@@ -23,6 +23,25 @@ class SourceTable extends Table {
       rows[i].addEventListener('mousedown', this.mouseDownListener);
     }
 
+    // Each cell updates its width dynamically, so we need to set each td width to the widest td in that column
+    const columns = table.rows[0].cells.length;
+
+    // Iterate through each column
+    for (let i = 0; i < columns; i++) {
+      let maxWidth = 0;
+
+      // Find the maximum width in the column
+      for (let j = 0; j < table.rows.length; j++) {
+        const cellWidth = table.rows[j].cells[i].offsetWidth;
+        maxWidth = Math.max(maxWidth, cellWidth);
+      }
+
+      // Set the width of all cells in the column
+      for (let j = 0; j < table.rows.length; j++) {
+        table.rows[j].cells[i].style.width = maxWidth + 'px';
+      }
+    }
+
     // Create clone table
     const rect = table.getBoundingClientRect();
 
