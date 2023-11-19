@@ -85,22 +85,18 @@ class SourceTable extends Table {
     this.targetRow = null;
     this.targetTable = null;
 
-    let targetCell = document.elementFromPoint(event.pageX, event.pageY);
-    if (targetCell == null || targetCell.nodeName.toLowerCase() !== 'td') return false;
+    let elementList = document.elementsFromPoint(event.pageX, event.pageY);
+    let tableTuple = getDropTable(elementList);
+    if(tableTuple == null) return false;
+    
+    var [cell, row, table] = tableTuple;
+    
 
-    let targetRow = targetCell.parentElement;
-    if (targetRow.nodeName.toLowerCase() === 'th') return false;
+    this.targetCell = cell;
+    this.targetRow = row;
+    this.targetTable = table;
 
-    let targetBody = targetRow.parentElement;
-    let targetTable = targetBody.parentElement;
-
-    if (!targetTable.classList.contains('droppableTable')) return false;
-
-    this.targetCell = targetCell;
-    this.targetRow = targetRow;
-    this.targetTable = targetTable;
-
-    this.targetRowID = [].slice.call(this.targetTable.querySelectorAll('tr')).indexOf(this.targetRow);
+    this.targetRowID = [].slice.call(this.table.querySelectorAll('tr')).indexOf(this.targetRow);
 
     return true;
   }
