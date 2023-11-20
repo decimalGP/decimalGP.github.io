@@ -21,14 +21,12 @@ class InnerJoinSourceTable extends SourceTable {
     }
     else {
       if (compareCell1 === compareCell2) {
-        this.targetRow.classList.add("correct");
-        this.targetRow.classList.remove("incorrect");
+        TargetTable.setRowCorrect(this.targetRow, true);
 
         this.errorList.removeError(this.targetRowID);
       }
       else {
-        this.targetRow.classList.add("incorrect");
-        this.targetRow.classList.remove("correct");
+        TargetTable.setRowCorrect(this.targetRow, false);
 
         this.errorList.addError(
           this.targetRowID,

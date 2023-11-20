@@ -35,7 +35,7 @@ class TargetTable extends Table {
     this.resizeColumns();
   }
 
-  resizeColumns() {   
+  resizeColumns() {
     let columnIndex = 0;
     for (let i=0; i<this.sourceTables.length; ++i) {
       for (let j=0; j<this.sourceTables[i].data[0].length; ++j) {
@@ -45,6 +45,18 @@ class TargetTable extends Table {
 
         columnIndex++;
       }
+    }
+  }
+
+  /// Set the display of the row according to the value
+  static setRowCorrect(row, value) {
+    if (value == true) {
+      row.classList.remove("incorrect");
+      row.classList.add("correct");
+    }
+    else {
+      row.classList.remove("correct");
+      row.classList.add("incorrect");
     }
   }
 }
