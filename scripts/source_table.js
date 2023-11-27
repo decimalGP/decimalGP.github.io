@@ -43,7 +43,7 @@ class SourceTable extends Table {
     }
 
     // Create clone table
-    const rect = table.getBoundingClientRect();
+    let rect = table.getBoundingClientRect();
 
     this.cloneTable = table.cloneNode(true); 
 
@@ -53,6 +53,12 @@ class SourceTable extends Table {
     this.cloneTable.style.visibility = 'hidden';
 
     table.parentNode.insertBefore(this.cloneTable, table);
+
+    window.addEventListener("resize", (event) => {
+      rect = table.getBoundingClientRect();
+      this.cloneTable.style.left = `${rect.left}px`;
+      this.cloneTable.style.top = `${rect.top}px`;
+    });
   }
 
   mouseDownHandler(event) {
