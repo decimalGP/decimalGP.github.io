@@ -1,14 +1,17 @@
 class Table {
-  constructor(data, table) {
+  constructor() {}
+
+  initHTML(data, table) {
     this.data = data;
     this.table = table;
-  }
+    
+    this.columnCount = this.data.length;
+    this.rowCount = this.data[0].length;
 
-  initHTML() {
-    for (let i=0; i<this.data.length; ++i) {
+    for (let i = 0; i < this.rowCount; ++i) {
       let row = this.table.insertRow(i);
 
-      for (let j=0; j<this.data[i].length; ++j) {
+      for (let j = 0; j < this.columnCount; ++j) {
         let cell = row.insertCell(j);
         let cellData = this.data[i][j];
 

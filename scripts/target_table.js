@@ -1,37 +1,11 @@
 class TargetTable extends Table {
   constructor(table, sourceTables) {
-    let columnCount = 0;
-    for (let i=0; i<sourceTables.length; ++i) {
-      columnCount += sourceTables[i].data[0].length;
-    }
-    
-    let dataRowCount = sourceTables[0].data.length;
-    let data = [];
-    for (let i=0; i<dataRowCount; ++i) {
-      let rowData = [];
-      
-      if (i == 0) {
-        for (let j=0; j<sourceTables.length; ++j) {
-          for (let k=0; k<sourceTables[j].data[0].length; ++k) {
-            rowData.push(sourceTables[j].data[0][k]);
-          }
-        }
-      }
-      else {
-        for (let j=0; j<columnCount; ++j) {
-          rowData.push('-');
-        }
-      }
+    super();
 
-      data.push(rowData);
-    }
-
-    super(data, table);
-    
     this.sourceTables = sourceTables;
-    
-    this.initHTML();
-
+    // Combine & create data
+    let data = this.createDataTable(sourceTables);
+    this.initHTML(data, table);
     this.resizeColumns();
   }
 
@@ -58,5 +32,10 @@ class TargetTable extends Table {
       row.classList.remove("correct");
       row.classList.add("incorrect");
     }
+  }
+
+  // Needs to override in child classes
+  createDataTable() {
+    return [];
   }
 }
