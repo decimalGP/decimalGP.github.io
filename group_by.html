@@ -19,33 +19,31 @@
       <h3 class="text-center">Group By</h3>
       <br>
       <p>
-        Description goes here...
+        The <code>GROUP BY</code> statement groups rows that have the same values into summary rows.
+        It is often used with aggregate functions (<code>COUNT(), MAX(), MIN(), SUM(), AVG()</code>) to group the result-set by one or more columns.
       </p>
 
       <!-- Preserved format -->
       <pre class="prettyprint lang-sql py-3">
-    example goes here...</pre>
+    SELECT COUNT(CustomerID) AS CustomerCount, State
+    FROM Customers
+    GROUP BY State;</pre>
       <!-- Preserved format end -->
 
       <div class="row">
           <div class="col">
-            <h5>Books (Source table)</h5>
-            <table id="books" class="draggableTable"></table>
-          </div>
-
-          <div class="col">
-            <h5>Authors (Source table)</h5>
-            <table id="authors"  class="draggableTable"></table>
+            <h5>Orders (Source table)</h5>
+            <table id="source1" class="draggableTable"></table>
           </div>
       </div>
 
       <br>
-      <code class="info">(!) Drag the rows of each <b>Source table</b> to the <b>Target table</b>.</code>
+      <code class="info">(!) Drag the rows of each <b>Source table</b> to the <b>Result table</b>.</code>
       <br><br>
   
       <div>
-        <h5>Joined Table</h5>
-        <table id="joinedTable" class="droppableTable"></table>  
+        <h5>Result Table</h5>
+        <table id="resultTable" class="droppableTable"></table>  
       </div>
 
       <br>
@@ -74,32 +72,19 @@
 
     const sourceTable1 = new InnerJoinSourceTable(
       [
-        ["ID", "Title", "ReleaseYear", "AuthorID"],
+        ["CustomerID", "ProductID", "ReleaseYear", "AuthorID"],
         ["1A512", "Dune", "1965", "1125"],
         ["5B538", "The Three-Body Problem", "2008", "3717"],
         ["7C389", "Six Wakes", "1965", "5942"],
       ],
-      document.getElementById("books"),
+      document.getElementById("source1"),
       errorList,
       compareColumns,
       0
     );
 
-    const sourceTable2 = new InnerJoinSourceTable(
-      [
-        ["ID", "Name", "Nationality"],
-        ["1125", "Frank Herbert", "American"],
-        ["3717", "Liu Cixin", "Chinese"],
-        ["5942", "Mur Lafferty", "American"],
-      ],
-      document.getElementById("authors"),
-      errorList,
-      compareColumns,
-      sourceTable1.data[0].length
-    );
-
     const targetTable = new TargetTable(
-      document.getElementById("joinedTable"),
+      document.getElementById("resultTable"),
       [sourceTable1, sourceTable2]
     );
   </script>
