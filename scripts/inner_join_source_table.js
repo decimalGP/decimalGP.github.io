@@ -3,12 +3,14 @@ class InnerJoinSourceTable extends SourceTable {
     super(data, table, errorList);
 
     this.compareColumns = compareColumns;
-    this.startColumn = startColumn;
+    // The column where the columns in this table start in the target table
+    this.startColumn = startColumn; 
   }
 
   updateTargetRow() {
     super.updateTargetRow();
 
+    // Fill in the html values for the target table's row
     for (let i=this.startColumn; i<this.startColumn + this.data[0].length; ++i) {
       this.targetRow.cells[i].innerHTML = this.draggingElement.cells[i - this.startColumn].innerHTML;
     }
@@ -21,12 +23,12 @@ class InnerJoinSourceTable extends SourceTable {
     }
     else {
       if (compareCell1 === compareCell2) {
-        TargetTable.setRowCorrect(this.targetRow, true);
+        SourceTable.setRowCorrect(this.targetRow, true);
 
         this.errorList.removeError(this.targetRowID);
       }
       else {
-        TargetTable.setRowCorrect(this.targetRow, false);
+        SourceTable.setRowCorrect(this.targetRow, false);
 
         this.errorList.addError(
           this.targetRowID,
