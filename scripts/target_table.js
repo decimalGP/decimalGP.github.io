@@ -22,18 +22,6 @@ class TargetTable extends Table {
     }
   }
 
-  /// Set the display of the row according to the value
-  static setRowCorrect(row, value) {
-    if (value == true) {
-      row.classList.remove("incorrect");
-      row.classList.add("correct");
-    }
-    else {
-      row.classList.remove("correct");
-      row.classList.add("incorrect");
-    }
-  }
-
   // Needs to override in child classes
   createDataTable(sourceTables) {
     return [];
