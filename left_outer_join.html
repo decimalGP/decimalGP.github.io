@@ -19,7 +19,7 @@
     <h3 class="text-center">Left-Outer Join</h3>
     <br>
     <p>
-      A <code>LEFT OUTER JOIN</code> combines rows from two tables based on a related column, showing all rows from the left table and matched rows from the right table, or NULL values for unmatched rows.
+      A <code>LEFT JOIN</code> combines rows from two tables based on a related column, showing all rows from the left table and matched rows from the right table, or NULL values for unmatched rows.
     </p>
 
     <!-- Preserved format -->
@@ -31,12 +31,12 @@
 
     <div class="row">
       <div class="col">
-        <h5>Books (Source table)</h5>
+        <h5>Employee (Source table)</h5>
         <table id="employee" class="draggableTable"></table>
       </div>
 
       <div class="col">
-        <h5>Authors (Source table)</h5>
+        <h5>Department (Source table)</h5>
         <table id="department" class="draggableTable"></table>
       </div>
     </div>
@@ -64,7 +64,8 @@
 <script src="scripts/table.js"></script>
 <script src="scripts/source_table.js"></script>
 <script src="scripts/target_table.js"></script>
-<script src="scripts/inner_join_source_table.js"></script>
+<script src="scripts/left_outer_join_source_table.js"></script>
+<script src="scripts/left_outer_join_target_table.js"></script>
 <script src="scripts/error_list.js"></script>
 <script>
   const errorList = new ErrorList(
@@ -74,7 +75,7 @@
 
   const compareColumns = [3, 4];
 
-  const sourceTable1 = new InnerJoinSourceTable(
+  const sourceTable1 = new LeftOuterJoinSourceTable(
     [
       ["EmployeeID", "EmployeeName", "DepartmentID"],
       [101, "John Doe", 1],
@@ -87,7 +88,7 @@
     0
   );
 
-  const sourceTable2 = new InnerJoinSourceTable(
+  const sourceTable2 = new LeftOuterJoinSourceTable(
     [
       ["DepartmentID", "DepartmentName"],
       [1, "HR"],
@@ -100,7 +101,7 @@
     sourceTable1.data[0].length
   );
 
-    const targetTable = new TargetTable(
+    const targetTable = new LeftOuterJoinTargetTable(
       document.getElementById("joinedTable"),
       [sourceTable1, sourceTable2]
     );
