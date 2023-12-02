@@ -72,10 +72,12 @@
 
     const sourceTable1 = new InnerJoinSourceTable(
       [
-        ["CustomerID", "ProductID", "ReleaseYear", "AuthorID"],
-        ["1A512", "Dune", "1965", "1125"],
-        ["5B538", "The Three-Body Problem", "2008", "3717"],
-        ["7C389", "Six Wakes", "1965", "5942"],
+        ["CustomerID", "ProductID", "State", "Date"],
+        ["1000", "CB500X", "VIC", "11-01-2022"],
+        ["1001", "CB650R", "NSW", "29-03-2022"],
+        ["1002", "CBR650R", "NSW", "15-04-2022"],
+        ["1003", "CB300R", "VIC", "23-07-2022"],
+        ["1004", "CB500F", "QLD", "04-09-2022"],
       ],
       document.getElementById("source1"),
       errorList,
