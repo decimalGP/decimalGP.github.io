@@ -3,12 +3,12 @@ class TargetTable extends Table {
     super();
 
     this.sourceTables = sourceTables;
-    // Combine & create data
     let data = this.createDataTable(sourceTables);
     this.initHTML(data, table);
     this.resizeColumns();
   }
 
+  // Resize the target table columns to match the source table columns
   resizeColumns() {
     let columnIndex = 0;
     for (let i=0; i<this.sourceTables.length; ++i) {
@@ -35,7 +35,7 @@ class TargetTable extends Table {
   }
 
   // Needs to override in child classes
-  createDataTable() {
+  createDataTable(sourceTables) {
     return [];
   }
 }

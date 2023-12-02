@@ -5,8 +5,8 @@ class Table {
     this.data = data;
     this.table = table;
     
-    this.columnCount = this.data.length;
-    this.rowCount = this.data[0].length;
+    this.columnCount = this.data[0].length;
+    this.rowCount = this.data.length;
 
     for (let i = 0; i < this.rowCount; ++i) {
       let row = this.table.insertRow(i);
@@ -23,5 +23,6 @@ class Table {
         }        
       }
     }
+
   }
 }
