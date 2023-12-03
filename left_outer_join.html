@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Bootstrap -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Left Outer Join</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+<head>
+  <!-- Bootstrap -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Left Outer Join</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
   <!-- Code Highlighter -->
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
@@ -19,7 +21,8 @@
     <h3 class="text-center">Left-Outer Join</h3>
     <br>
     <p>
-      A <code>LEFT JOIN</code> combines rows from two tables based on a related column, showing all rows from the left table and matched rows from the right table, or NULL values for unmatched rows.
+      A <code>LEFT JOIN</code> combines rows from two tables based on a related column, showing all rows from the left
+      table and matched rows from the right table, or NULL values for unmatched rows.
     </p>
 
     <!-- Preserved format -->
@@ -29,7 +32,7 @@
     where b.DepartmentID = a.DepartmentID(+);</pre>
     <!-- Preserved format end -->
 
-    <div class="row">
+    <div class="row" style="height: 230px;">
       <div class="col">
         <h5>Employee (Source table)</h5>
         <table id="employee" class="draggableTable"></table>
@@ -41,14 +44,14 @@
       </div>
     </div>
 
-      <br>
-      <code class="info">(!) Drag the rows of each <b>Source table</b> to the <b>Joined table</b>.</code>
-      <br><br>
-  
-      <div>
-        <h5>Joined Table</h5>
-        <table id="joinedTable" class="droppableTable"></table>  
-      </div>
+    <br>
+    <code class="info">(!) Drag the rows of each <b>Source table</b> to the <b>Joined table</b>.</code>
+    <br><br>
+
+    <div>
+      <h5>Joined Table</h5>
+      <table id="joinedTable" class="droppableTable"></table>
+    </div>
 
     <br>
 
@@ -68,7 +71,10 @@
 <script src="scripts/left_outer_join_target_table.js"></script>
 <script src="scripts/error_list.js"></script>
 <script src="scripts/helpers.js"></script>
+<script src="scripts/manager.js"></script>
 <script>
+  var manager = new Manager();
+
   const errorList = new ErrorList(
     document.getElementById("errorList"),
     document.getElementById("errorListTitle")
@@ -85,6 +91,7 @@
     ],
     document.getElementById("employee"),
     errorList,
+    manager,
     compareColumns,
     0
   );
@@ -98,13 +105,16 @@
     ],
     document.getElementById("department"),
     errorList,
+    manager,
     compareColumns,
     sourceTable1.data[0].length
   );
 
-    const targetTable = new LeftOuterJoinTargetTable(
-      document.getElementById("joinedTable"),
-      [sourceTable1, sourceTable2]
-    );
-  </script>
+  const targetTable = new LeftOuterJoinTargetTable(
+    document.getElementById("joinedTable"),
+    [sourceTable1, sourceTable2],
+    manager
+  );
+</script>
+
 </html>

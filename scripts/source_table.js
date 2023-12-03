@@ -3,6 +3,7 @@ class SourceTable extends Table {
     super();
 
     this.manager = manager;
+    this.sourceIndex = this.manager.sourceTables.length;
     manager.sourceTables.push(this);
 
     this.initHTML(data, table);

@@ -29,7 +29,7 @@
     where b.authorID = a.ID;</pre>
       <!-- Preserved format end -->
 
-      <div class="row">
+      <div class="row" style="height: 230px;">
           <div class="col">
             <h5>Books (Source table)</h5>
             <table id="books" class="draggableTable"></table>
@@ -68,7 +68,10 @@
   <script src="scripts/inner_join_target_table.js"></script>
   <script src="scripts/error_list.js"></script>
   <script src="scripts/helpers.js"></script>
+  <script src="scripts/manager.js"></script>
   <script>
+    var manager = new Manager();
+
     const errorList = new ErrorList(
       document.getElementById("errorList"),
       document.getElementById("errorListTitle")
@@ -85,6 +88,7 @@
       ],
       document.getElementById("books"),
       errorList,
+      manager,
       compareColumns,
       0
     );
@@ -98,13 +102,15 @@
       ],
       document.getElementById("authors"),
       errorList,
+      manager,
       compareColumns,
       sourceTable1.data[0].length
     );
 
     const targetTable = new InnerJoinTargetTable(
       document.getElementById("resultTable"),
-      [sourceTable1, sourceTable2]
+      [sourceTable1, sourceTable2],
+      manager
     );
   </script>
 </html>

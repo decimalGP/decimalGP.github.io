@@ -1,6 +1,6 @@
 class LeftOuterJoinSourceTable extends SourceTable {
-  constructor(data, table, errorList, compareColumns, startColumn) {
-    super(data, table, errorList);
+  constructor(data, table, errorList, manager, compareColumns, startColumn) {
+    super(data, table, errorList, manager);
 
     this.compareColumns = compareColumns;
     this.startColumn = startColumn;
@@ -21,7 +21,13 @@ class LeftOuterJoinSourceTable extends SourceTable {
         this.targetRow.classList.remove("correct");
     }
     else {
-      if (compareCell1 === compareCell2 || compareCell1 != "-" && compareCell2 === "-") {
+      if(!this.keyExistInOtherTable(compareCell1) && compareCell2 === "-")
+      {
+        SourceTable.setRowCorrect(this.targetRow, true);
+  
+        this.errorList.removeError(this.targetRowID);
+      }
+      else if (compareCell1 === compareCell2) {
         SourceTable.setRowCorrect(this.targetRow, true);
 
         this.errorList.removeError(this.targetRowID);
@@ -35,8 +41,17 @@ class LeftOuterJoinSourceTable extends SourceTable {
           "Find a row in Authors table with ID " + compareCell1
         );
       }
+    }    
+  }
+  keyExistInOtherTable(key)
+  {
+    console.log(this.manager.sourceTable[1].table.rowCount);
+    for(let i = 0; i < this.manager.sourceTable[1].table.rowCount; i++)
+    {
+      console.log(this.manager.sourceTable[1].data[i][0])
+      if(key === this.manager.sourceTable[1].data[i][0])
+        return true
     }
-
-    
+    return false
   }
 }
