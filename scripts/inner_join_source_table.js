@@ -1,6 +1,6 @@
 class InnerJoinSourceTable extends SourceTable {
-  constructor(data, table, errorList, compareColumns, startColumn) {
-    super(data, table, errorList);
+  constructor(data, table, errorList, manager, compareColumns, startColumn) {
+    super(data, table, errorList, manager);
 
     this.compareColumns = compareColumns;
     // The column where the columns in this table start in the target table

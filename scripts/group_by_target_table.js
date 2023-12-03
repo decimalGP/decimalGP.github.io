@@ -1,8 +1,11 @@
 /// This group by target table will only have 2 columns: Count column and Group By column
 /// Currently only support rows with only Group By column having the same values in multiple cells
 class GroupByTargetTable extends Table {
-    constructor(table, sourceTables, groupByColumnInSource, countColumnName) {
+    constructor(table, sourceTables, manager, groupByColumnInSource, countColumnName) {
         super();
+
+        this.manager = manager;
+        manager.targetTable = this;
     
         this.countColumn = 0;
         this.groupByColumn = 1;

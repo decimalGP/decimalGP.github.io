@@ -1,6 +1,9 @@
 class TargetTable extends Table {
-  constructor(table, sourceTables) {
+  constructor(table, sourceTables, manager) {
     super();
+
+    this.manager = manager;
+    manager.targetTable = this;
 
     this.sourceTables = sourceTables;
     let data = this.createDataTable(sourceTables);
