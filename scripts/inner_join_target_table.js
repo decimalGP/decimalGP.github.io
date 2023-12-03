@@ -1,6 +1,6 @@
 class InnerJoinTargetTable extends TargetTable {
-    constructor(table, sourceTables) {
-        super(table, sourceTables);
+    constructor(table, sourceTables, manager) {
+        super(table, sourceTables, manager);
     }
 
     createDataTable(sourceTables) {

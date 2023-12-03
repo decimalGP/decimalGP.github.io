@@ -1,6 +1,9 @@
 class SourceTable extends Table {
-  constructor(data, table, errorList) {
+  constructor(data, table, errorList, manager) {
     super();
+
+    this.manager = manager;
+    manager.sourceTables.push(this);
 
     this.initHTML(data, table);
     
