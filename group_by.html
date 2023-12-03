@@ -30,7 +30,7 @@
     GROUP BY State;</pre>
       <!-- Preserved format end -->
 
-      <div class="row">
+      <div class="row" style="height: 230px;">
           <div class="col">
             <h5>Orders (Source table)</h5>
             <table id="source1" class="draggableTable"></table>
@@ -80,6 +80,7 @@
         ["1002", "CBR650R", "NSW", "15-04-2022"],
         ["1003", "CB300R", "VIC", "23-07-2022"],
         ["1004", "CB500F", "QLD", "04-09-2022"],
+        ["1005", "CBR250RR", "VIC", "25-12-2022"],
       ],
       document.getElementById("source1"),
       errorList,
@@ -89,7 +90,9 @@
 
     const targetTable = new GroupByTargetTable(
       document.getElementById("resultTable"),
-      [sourceTable1]
+      [sourceTable1],
+      2,
+      "CustomerCount"
     );
   </script>
 </html>

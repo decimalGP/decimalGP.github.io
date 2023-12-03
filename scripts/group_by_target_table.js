@@ -1,33 +1,34 @@
-class GroupByTargetTable extends TargetTable {
-    constructor(table, sourceTables, countColumn, groupByColumn) {
-        super(table, sourceTables);
+/// This group by target table will only have 2 columns: Count column and Group By column
+/// Currently only support rows with only Group By column having the same values in multiple cells
+class GroupByTargetTable extends Table {
+    constructor(table, sourceTables, groupByColumnInSource, countColumnName) {
+        super();
+    
+        this.countColumn = 0;
+        this.groupByColumn = 1;
+        this.groupByColumnInSource = groupByColumnInSource;
+        this.sourceTables = sourceTables;
+        this.countColumnName = countColumnName;
 
-        this.countColumn = countColumn;
-        this.groupByColumn = groupByColumn;
+        let data = this.createDataTable(sourceTables);
+        this.initHTML(data, table);
+        this.resizeColumns();
     }
 
     createDataTable(sourceTables) {
-        let dataColumnCount = 0;
-        for (let i = 0; i < sourceTables.length; ++i) {
-            dataColumnCount += sourceTables[i].data[0].length;
-        }
-
-        let dataRowCount = sourceTables[0].data.length;
+        this.calculateNumberOfRows();
 
         let data = [];
-        for (let i = 0; i < dataRowCount; ++i) {
+        for (let i = 0; i < this.dataRowCount; ++i) {
             let rowData = [];
 
             if (i == 0) {
-                for (let j = 0; j < sourceTables.length; ++j) {
-                    for (let k = 0; k < sourceTables[j].data[0].length; ++k) {
-                        rowData.push(sourceTables[j].data[0][k]);
-                    }
-                }
+                rowData[this.countColumn] = this.countColumnName;
+                rowData[this.groupByColumn] = sourceTables[0].data[0][this.groupByColumnInSource];
             }
             else {
-                for (let j = 0; j < dataColumnCount; ++j) {
-                    rowData.push('0    <button>+</button>');
+                for (let j = 0; j < this.dataColumnCount; ++j) {
+                    rowData.push('-');
                 }
             }
 
@@ -35,5 +36,29 @@ class GroupByTargetTable extends TargetTable {
         }
 
         return data;
+    }
+
+    calculateNumberOfRows() {
+        this.dataColumnCount = 2;
+        this.dataRowCount = 1;
+
+        this.groupByData = {};  // saved in format {count, cell value for Group By column}
+        for (let i=1; i<this.sourceTables[0].data.length; ++i) {
+            let key = this.sourceTables[0].data[i][this.groupByColumnInSource];
+            if (!this.groupByData[key]) {
+                this.groupByData[key] = 0;
+            }
+            let value = ++this.groupByData[key];
+        }
+        for (let key in this.groupByData) {
+            this.dataRowCount++;
+        }
+    }
+
+    /// Resize the target table columns to match the source table columns
+    resizeColumns() {      
+      const width = this.sourceTables[0].table.rows[1].cells[this.groupByColumnInSource].offsetWidth;
+      let cell = this.table.rows[1].cells[this.groupByColumn];
+      cell.style.width = `${width}px`;
     }
 }
