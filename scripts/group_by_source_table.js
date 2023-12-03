@@ -33,8 +33,12 @@ class GroupBySourceTable extends SourceTable {
       this.changeCellValue(index, 1);
     }
 
+    let decreaseFunction = function() {
+      this.changeCellValue(index, -1);
+    }
+
     increaseButton.onclick = increaseFunction.bind(this);
-    // decreaseButton.onclick = this.changeCellValue(index, -1);
+    decreaseButton.onclick = decreaseFunction.bind(this);
   }
 
   getTargetRowIndex() {
