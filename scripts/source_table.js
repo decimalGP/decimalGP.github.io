@@ -111,7 +111,7 @@ class SourceTable extends Table {
     this.targetTable = null;
 
     let elementList = document.elementsFromPoint(event.pageX, event.pageY);
-    let tableTuple = getDropTable(elementList);
+    let tableTuple = Helper.getDropTable(elementList);
     if(tableTuple == null) return false;
     
     var [cell, row, table] = tableTuple;
