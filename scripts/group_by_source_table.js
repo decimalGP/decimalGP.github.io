@@ -18,8 +18,6 @@ class GroupBySourceTable extends SourceTable {
     countText.style.paddingInline = "20px";
     countText.innerHTML = "0";
 
-    console.log(countText.id);
-
     let increaseButton = document.createElement("button");
     increaseButton.innerHTML = "+";
 
@@ -60,7 +58,6 @@ class GroupBySourceTable extends SourceTable {
 
     
     let rowCorrect = countValue == targetTable.groupByData[groupByValue];
-    console.log(rowIndex + " " + countValue + " " + groupByValue + " " + rowCorrect);
-    this.setRowCorrect(this.targetRow, rowCorrect);
+    SourceTable.setRowCorrect(this.targetRow, rowCorrect);
   }
 }

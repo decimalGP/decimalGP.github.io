@@ -151,7 +151,7 @@ class SourceTable extends Table {
   }
 
   /// Set the display of the row according to the value
-  setRowCorrect(row, value) {
+  static setRowCorrect(row, value) {
     if (value == true) {
       row.classList.remove("incorrect");
       row.classList.add("correct");
