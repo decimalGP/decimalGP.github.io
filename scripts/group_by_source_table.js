@@ -63,5 +63,16 @@ class GroupBySourceTable extends SourceTable {
     
     let rowCorrect = countValue == targetTable.groupByData[groupByValue];
     SourceTable.setRowCorrect(this.targetRow, rowCorrect);
+
+    if (rowCorrect) {
+      this.errorList.removeError(this.targetRowID);
+    }
+    else {
+      this.errorList.addError(
+        this.targetRowID,
+        "Error on row " + this.targetRowID + ": Books.AuthorID != Authors.ID",
+        "Find a row in Authors table with ID " + compareCell1
+      );
+    }
   }
 }
