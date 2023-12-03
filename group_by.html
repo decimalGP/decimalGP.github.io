@@ -73,8 +73,6 @@
       document.getElementById("errorListTitle")
     );
 
-    const compareColumns = [3, 4];
-
     const sourceTable1 = new GroupBySourceTable(
       [
         ["CustomerID", "ProductID", "State", "Date"],
@@ -88,8 +86,7 @@
       document.getElementById("source1"),
       errorList,
       manager,
-      compareColumns,
-      0
+      2
     );
 
     const targetTable = new GroupByTargetTable(

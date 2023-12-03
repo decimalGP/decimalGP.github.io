@@ -64,4 +64,4 @@ class GroupByTargetTable extends Table {
       let cell = this.table.rows[1].cells[this.groupByColumn];
       cell.style.width = `${width}px`;
     }
-}
+}   
