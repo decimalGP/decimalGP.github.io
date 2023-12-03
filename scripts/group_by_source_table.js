@@ -70,8 +70,8 @@ class GroupBySourceTable extends SourceTable {
     else {
       this.errorList.addError(
         this.targetRowID,
-        "Error on row " + this.targetRowID + ": Books.AuthorID != Authors.ID",
-        "Find a row in Authors table with ID " + compareCell1
+        "Error on row " + this.targetRowID,
+        "Adjust the CustomerCount to the correct value"
       );
     }
   }
