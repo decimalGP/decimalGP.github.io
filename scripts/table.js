@@ -10,6 +10,7 @@ class Table {
 
     for (let i = 0; i < this.rowCount; ++i) {
       let row = this.table.insertRow(i);
+      row.classList.add("row#" + i);
 
       for (let j = 0; j < this.columnCount; ++j) {
         let cell = row.insertCell(j);
