@@ -29,22 +29,24 @@ class GroupBySourceTable extends SourceTable {
     this.targetRow.cells[0].appendChild(countText);
     this.targetRow.cells[0].appendChild(increaseButton);
 
-    let increaseFunction = function() {
+    let increaseFunction = function () {
       this.changeCellValue(index, 1);
     }
 
-    let decreaseFunction = function() {
+    let decreaseFunction = function () {
       this.changeCellValue(index, -1);
     }
 
     increaseButton.onclick = increaseFunction.bind(this);
     decreaseButton.onclick = decreaseFunction.bind(this);
+
+    this.checkValue(index);
   }
 
   getTargetRowIndex() {
-    return parseInt(this.targetRow.classList[0].substring(4,5));
+    return parseInt(this.targetRow.classList[0].substring(4, 5));
   }
-      
+
   /// Function used for the increase/decrease button
   changeCellValue(rowIndex, amount) {
     let textHTML = document.getElementById("increase-cell-" + rowIndex);
@@ -60,7 +62,6 @@ class GroupBySourceTable extends SourceTable {
     let targetTable = this.manager.targetTable;
     let groupByValue = targetTable.table.rows[rowIndex].cells[targetTable.groupByColumn].innerHTML;
 
-    
     let rowCorrect = countValue == targetTable.groupByData[groupByValue];
     SourceTable.setRowCorrect(this.targetRow, rowCorrect);
 
