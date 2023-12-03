@@ -33,8 +33,12 @@ class GroupBySourceTable extends SourceTable {
       this.changeCellValue(index, 1);
     }
 
+    let decreaseFunction = function() {
+      this.changeCellValue(index, -1);
+    }
+
     increaseButton.onclick = increaseFunction.bind(this);
-    // decreaseButton.onclick = this.changeCellValue(index, -1);
+    decreaseButton.onclick = decreaseFunction.bind(this);
   }
 
   getTargetRowIndex() {
@@ -59,5 +63,16 @@ class GroupBySourceTable extends SourceTable {
     
     let rowCorrect = countValue == targetTable.groupByData[groupByValue];
     SourceTable.setRowCorrect(this.targetRow, rowCorrect);
+
+    if (rowCorrect) {
+      this.errorList.removeError(this.targetRowID);
+    }
+    else {
+      this.errorList.addError(
+        this.targetRowID,
+        "Error on row " + this.targetRowID,
+        "Adjust the CustomerCount to the correct value"
+      );
+    }
   }
 }
