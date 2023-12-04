@@ -14,9 +14,11 @@ class HavingSourceTable extends GroupBySourceTable {
             super.checkValue(rowIndex);
         }
         else {
+            let row = targetTable.table.rows[rowIndex];
+            SourceTable.setRowCorrect(row, false);
             this.errorList.addError(
-                this.targetRowID,
-                "Error on row " + this.targetRowID,
+                rowIndex,
+                "Error on row " + rowIndex,
                 "The CustomerCount of this row does not meet the requirement."
             );
         }

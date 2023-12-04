@@ -63,15 +63,16 @@ class GroupBySourceTable extends SourceTable {
     let groupByValue = targetTable.table.rows[rowIndex].cells[targetTable.groupByColumn].innerHTML;
 
     let rowCorrect = countValue == targetTable.groupByData[groupByValue];
-    SourceTable.setRowCorrect(this.targetRow, rowCorrect);
+    let row = targetTable.table.rows[rowIndex];
+    SourceTable.setRowCorrect(row, rowCorrect);
 
     if (rowCorrect) {
-      this.errorList.removeError(this.targetRowID);
+      this.errorList.removeError(rowIndex);
     }
     else {
       this.errorList.addError(
-        this.targetRowID,
-        "Error on row " + this.targetRowID,
+        rowIndex,
+        "Error on row " + rowIndex,
         "Adjust the CustomerCount to the correct value"
       );
     }
