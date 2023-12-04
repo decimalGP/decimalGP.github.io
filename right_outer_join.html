@@ -27,9 +27,10 @@
 
     <!-- Preserved format -->
     <pre class="prettyprint lang-sql py-3">
-        select *
-        from employee b, department a
-        where b.DepartmentID = a.DepartmentID(+);</pre>
+      SELECT *
+      FROM employee b
+      RIGHT OUTER JOIN department a ON b.DepartmentID = a.DepartmentID;
+    </pre>
     </pre>
     <!-- Preserved format end -->
 
