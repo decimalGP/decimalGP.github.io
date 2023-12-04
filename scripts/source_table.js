@@ -7,7 +7,7 @@ class SourceTable extends Table {
     manager.sourceTables.push(this);
 
     this.initHTML(data, table);
-    
+
     this.errorList = errorList;
 
     this.hasDraggingStarted = false;
@@ -20,7 +20,7 @@ class SourceTable extends Table {
     this.mouseUpListener = this.mouseUpHandler.bind(this);
 
     let rows = table.querySelectorAll('tr');
-    for (let i=0; i<rows.length; ++i) {
+    for (let i = 0; i < rows.length; ++i) {
       // Ignore header
       if (i === 0) continue;
 
@@ -49,7 +49,7 @@ class SourceTable extends Table {
     // Create clone table
     let rect = table.getBoundingClientRect();
 
-    this.cloneTable = table.cloneNode(true); 
+    this.cloneTable = table.cloneNode(true);
 
     this.cloneTable.style.position = 'absolute';
     this.cloneTable.style.left = `${rect.left}px`;
@@ -63,15 +63,18 @@ class SourceTable extends Table {
       this.cloneTable.style.left = `${rect.left}px`;
       this.cloneTable.style.top = `${rect.top}px`;
     });
+
+    let sourceDiv = document.getElementById("source-div");
+    sourceDiv.style.height = Math.max(sourceDiv.offsetHeight, this.table.offsetHeight) + "px";
   }
 
   mouseDownHandler(event) {
     this.draggingElement = event.target.parentElement;
-  
+
     const rect = this.draggingElement.getBoundingClientRect();
     this.mouseToElementX = event.pageX - rect.left;
-    this.mouseToElementY = event.pageY - rect.top; 
-  
+    this.mouseToElementY = event.pageY - rect.top;
+
     document.addEventListener('mousemove', this.mouseMoveListener);
     document.addEventListener('mouseup', this.mouseUpListener);
   }
@@ -90,7 +93,7 @@ class SourceTable extends Table {
 
     // Add highlighter to target row
     if (!this.updateTarget(event)) return;
-    this.targetRow.classList.add('selectedRow');    
+    this.targetRow.classList.add('selectedRow');
   }
 
   toggleCloneTable(isOn) {
@@ -101,7 +104,7 @@ class SourceTable extends Table {
     }
     else {
       this.cloneTable.style.visibility = 'hidden';
-      this.table.style.visibility = 'visible';      
+      this.table.style.visibility = 'visible';
     }
   }
 
@@ -116,10 +119,10 @@ class SourceTable extends Table {
 
     let elementList = document.elementsFromPoint(event.pageX, event.pageY);
     let tableTuple = Helper.getDropTable(elementList);
-    if(tableTuple == null) return false;
-    
+    if (tableTuple == null) return false;
+
     var [cell, row, table] = tableTuple;
-    
+
 
     this.targetCell = cell;
     this.targetRow = row;
@@ -164,5 +167,5 @@ class SourceTable extends Table {
   }
 
   /// Override in child classes
-  updateTargetRow() {}
+  updateTargetRow() { }
 }
