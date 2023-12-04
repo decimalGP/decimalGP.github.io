@@ -19,24 +19,23 @@
       <h3 class="text-center">HAVING</h3>
       <br>
       <p>
-        Description goes here...
+        A <code>HAVING</code> clause specifies that a <code>SELECT</code> statement must only return rows 
+        where <b>aggregate values</b> meet the specified conditions.
       </p>
 
       <!-- Preserved format -->
       <pre class="prettyprint lang-sql py-3">
-    example goes here...</pre>
+    SELECT COUNT(CustomerID) AS CustomerCount, State
+    FROM Customers
+    GROUP BY State
+    HAVING COUNT(CustomerID) > 2;</pre>
       <!-- Preserved format end -->
 
-      <div class="row">
-          <div class="col">
-            <h5>Books (Source table)</h5>
-            <table id="books" class="draggableTable"></table>
-          </div>
-
-          <div class="col">
-            <h5>Authors (Source table)</h5>
-            <table id="authors"  class="draggableTable"></table>
-          </div>
+      <div id="source-div" class="row">
+        <div class="col">
+          <h5>Orders (Source table)</h5>
+          <table id="source1" class="draggableTable"></table>
+        </div>
       </div>
 
       <br>
@@ -62,45 +61,48 @@
   <script src="scripts/table.js"></script>
   <script src="scripts/source_table.js"></script>
   <script src="scripts/target_table.js"></script>
-  <script src="scripts/inner_join_source_table.js"></script>
+  <script src="scripts/group_by_source_table.js"></script>
+  <script src="scripts/group_by_target_table.js"></script>
+  <script src="scripts/having_source_table.js"></script>
+  <script src="scripts/having_target_table.js"></script>
   <script src="scripts/error_list.js"></script>
+  <script src="scripts/manager.js"></script>
+  <script src="scripts/helpers.js"></script>
   <script>
+    var manager = new Manager();
+
     const errorList = new ErrorList(
       document.getElementById("errorList"),
       document.getElementById("errorListTitle")
     );
 
-    const compareColumns = [3, 4];
-
-    const sourceTable1 = new InnerJoinSourceTable(
+    const sourceTable1 = new HavingSourceTable(
       [
-        ["ID", "Title", "ReleaseYear", "AuthorID"],
-        ["1A512", "Dune", "1965", "1125"],
-        ["5B538", "The Three-Body Problem", "2008", "3717"],
-        ["7C389", "Six Wakes", "1965", "5942"],
+        ["CustomerID", "ProductID", "State", "Date"],
+        ["1000", "CB500X", "VIC", "11-01-2022"],
+        ["1001", "CB650R", "NSW", "29-03-2022"],
+        ["1002", "CBR650R", "NSW", "15-04-2022"],
+        ["1003", "CB300R", "VIC", "23-07-2022"],
+        ["1004", "CB500F", "QLD", "04-09-2022"],
+        ["1005", "CBR250RR", "VIC", "25-12-2022"],
+        ["1006", "CRF300L", "NSW", "27-12-2022"],
+        ["1007", "CRF450RL", "SA", "19-01-2023"],
+        ["1008", "CBR1000RR", "VIC", "08-03-2023"],
       ],
-      document.getElementById("books"),
+      document.getElementById("source1"),
       errorList,
-      compareColumns,
-      0
+      manager,
+      2,
+      2
     );
 
-    const sourceTable2 = new InnerJoinSourceTable(
-      [
-        ["ID", "Name", "Nationality"],
-        ["1125", "Frank Herbert", "American"],
-        ["3717", "Liu Cixin", "Chinese"],
-        ["5942", "Mur Lafferty", "American"],
-      ],
-      document.getElementById("authors"),
-      errorList,
-      compareColumns,
-      sourceTable1.data[0].length
-    );
-
-    const targetTable = new TargetTable(
+    const targetTable = new HavingTargetTable(
       document.getElementById("resultTable"),
-      [sourceTable1, sourceTable2]
+      [sourceTable1],
+      manager,
+      2,
+      "CustomerCount",
+      2
     );
   </script>
 </html>

@@ -28,7 +28,7 @@ class InnerJoinSourceTable extends SourceTable {
         this.errorList.removeError(this.targetRowID);
       }
       else {
-        SourceTable.setRowCorrect(this.targetRow, false);
+        this.setRowCorrect(this.targetRow, false);
 
         this.errorList.addError(
           this.targetRowID,
