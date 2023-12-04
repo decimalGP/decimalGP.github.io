@@ -125,7 +125,7 @@ class SourceTable extends Table {
     this.targetRow = row;
     this.targetTable = table;
 
-    this.targetRowID = [].slice.call(this.table.querySelectorAll('tr')).indexOf(this.targetRow);
+    this.targetRowID = [].slice.call(table.querySelectorAll('tr')).indexOf(this.targetRow);
 
     return true;
   }

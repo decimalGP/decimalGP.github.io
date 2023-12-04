@@ -10,8 +10,6 @@ class HavingSourceTable extends GroupBySourceTable {
         let groupByValue = targetTable.table.rows[rowIndex].cells[targetTable.groupByColumn].innerHTML;
         let resultCountValue = targetTable.groupByData[groupByValue];
 
-        console.log(resultCountValue + " " + this.compareValue);
-
         if (resultCountValue > this.compareValue) {
             super.checkValue(rowIndex);
         }
