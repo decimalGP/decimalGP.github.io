@@ -49,8 +49,8 @@
     <br><br>
 
     <div>
-      <h5>Joined Table</h5>
-      <table id="joinedTable" class="droppableTable"></table>
+      <h5>Result Table</h5>
+      <table id="resultTable" class="droppableTable"></table>
     </div>
 
     <br>
@@ -111,7 +111,7 @@
   );
 
   const targetTable = new LeftOuterJoinTargetTable(
-    document.getElementById("joinedTable"),
+    document.getElementById("resultTable"),
     [sourceTable1, sourceTable2],
     manager
   );

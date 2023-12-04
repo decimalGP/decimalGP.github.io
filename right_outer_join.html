@@ -36,12 +36,12 @@
     <div class="row">
       <div class="col">
         <h5>Employee (Source table)</h5>
-        <table id="books" class="draggableTable"></table>
+        <table id="employee" class="draggableTable"></table>
       </div>
 
       <div class="col">
         <h5>Department (Source table)</h5>
-        <table id="authors" class="draggableTable"></table>
+        <table id="department" class="draggableTable"></table>
       </div>
     </div>
 
@@ -112,7 +112,7 @@
   );
 
   const targetTable = new RightOuterJoinTargetTable(
-    document.getElementById("joinedTable"),
+    document.getElementById("resultTable"),
     [sourceTable1, sourceTable2],
     manager
   );
