@@ -20,4 +20,10 @@ class Helper{
       
         return null;
     }
+
+    // Remove correct and incorrect style for row (for the reset button)
+    static removeRowDisplay(row) {
+        row.classList.remove("correct");
+        row.classList.remove("incorrect");
+    }
 }
