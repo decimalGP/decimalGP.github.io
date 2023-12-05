@@ -42,7 +42,7 @@ class FullOuterJoinSourceTable extends SourceTable {
         this.errorList.addError(
           this.targetRowID,
           "Error on row " + this.targetRowID + ": Employee.DepartmentID != Department.DepartmentID",
-          "Find a row in other table with matching DepartmentID"
+          "Press the reset button next to row " + this.targetRowID + " to try again"
         );
       }
     }
