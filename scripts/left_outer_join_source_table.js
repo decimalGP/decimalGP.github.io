@@ -31,8 +31,8 @@ class LeftOuterJoinSourceTable extends SourceTable {
 
       this.errorList.addError(
         this.targetRowID,
-        "Error on row " + this.targetRowID + ": Employee.DepartmentID != Department.DepartmentID or there is no matching row from the other source table",
-        "Find a matching row from the other source table or the dragged row might not be selected by this type of join"
+        "Error on row " + this.targetRowID + ": There is no matching row from the other source table",
+        "Find another row selected by a LEFT JOIN"
       );
     }
     // Standard matching id check 
@@ -46,8 +46,8 @@ class LeftOuterJoinSourceTable extends SourceTable {
 
         this.errorList.addError(
           this.targetRowID,
-          "Error on row " + this.targetRowID + ": Employee.DepartmentID != Department.DepartmentID or there is no matching row from the other source table",
-          "Find a matching row from the other source table or the dragged row might not be selected by this type of join"
+          "Error on row " + this.targetRowID + ": Employee.DepartmentID != Department.DepartmentID",
+          "Find a matching row from the other source table"
         );
       }
     }
