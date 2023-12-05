@@ -32,7 +32,7 @@ class LeftOuterJoinSourceTable extends SourceTable {
       this.errorList.addError(
         this.targetRowID,
         "Error on row " + this.targetRowID + ": There is no matching row from the other source table",
-        "Find another row selected by a RIGHT JOIN"
+        "Find another row selected by a LEFT JOIN"
       );
     }
     // Standard matching id check 
