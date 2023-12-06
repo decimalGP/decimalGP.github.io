@@ -71,3 +71,7 @@ th {
 #resultTable td:last-child {
   border :none;
 }
+
+body {
+  background-color: antiquewhite;
+}
