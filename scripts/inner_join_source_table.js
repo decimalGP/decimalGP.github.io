@@ -33,7 +33,7 @@ class InnerJoinSourceTable extends SourceTable {
         this.errorList.addError(
           this.targetRowID,
           "Error on row " + this.targetRowID + ": Books.AuthorID != Authors.ID",
-          "Press the reset button next to row " + this.targetRowID + " to try again"
+          "Press the reset button next to row " + this.targetRowID + " to reset the row"
         );
       }
     }
