@@ -24,6 +24,11 @@ table, td, th {
   user-select: none;
 }
 
+.droppableTable_not_join {
+  cursor: pointer;
+  user-select: none;
+}
+
 .correct {
   background-color: rgb(167, 243, 54);
 }
@@ -63,6 +68,6 @@ th {
   cursor: default;
 }
 
-.droppableTable td:last-child {
+#resultTable td:last-child {
   border :none;
 }
