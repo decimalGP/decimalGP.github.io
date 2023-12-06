@@ -22,32 +22,32 @@ class RightOuterJoinSourceTable extends SourceTable {
     }
     // If there is no match in the left source table, set row to true since it's right outer join
     if (!this.keyExistInOtherTable(compareCell2) && compareCell1 == "-" && this.sourceIndex == 1) {
-      SourceTable.setRowCorrect(this.targetRow, true);
+      Helper.setRowCorrect(this.targetRow, true);
       this.errorList.removeError(this.targetRowID);
     }
     // If there is no match in the right source table, set row to false
     else if (!this.keyExistInOtherTable(compareCell1) && this.sourceIndex == 0) {
-      SourceTable.setRowCorrect(this.targetRow, false);
+      Helper.setRowCorrect(this.targetRow, false);
 
       this.errorList.addError(
         this.targetRowID,
-        "Error on row " + this.targetRowID + ": Employee.DepartmentID != Department.DepartmentID or there is no matching row from the other source table",
-        "Find a matching row from the other source table or the dragged row might not be selected by this type of join"
+        "Error on row " + this.targetRowID + ": There is no matching row from the other source table",
+        "Press the reset button next to row " + this.targetRowID + " to reset the row"
       );
     }
     // Standard matching id check 
     else {
       if (compareCell1 === compareCell2) {
-        SourceTable.setRowCorrect(this.targetRow, true);
+        Helper.setRowCorrect(this.targetRow, true);
         this.errorList.removeError(this.targetRowID);
       }
       else if (this.sourceIndex == 0 && compareCell2 != "-" || this.sourceIndex == 1 && compareCell1 != "-") {
-        SourceTable.setRowCorrect(this.targetRow, false);
+        Helper.setRowCorrect(this.targetRow, false);
 
         this.errorList.addError(
           this.targetRowID,
-          "Error on row " + this.targetRowID + ": Employee.DepartmentID != Department.DepartmentID or there is no matching row from the other source table",
-          "Find a matching row from the other source table or the dragged row might not be selected by this type of join"
+          "Error on row " + this.targetRowID + ": Employee.DepartmentID != Department.DepartmentID",
+          "Press the reset button next to row " + this.targetRowID + " to reset the row"
         );
       }
     }

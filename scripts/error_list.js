@@ -1,9 +1,11 @@
 class ErrorList {
   /// list = html list
-  constructor(list, listTitle) {
+  constructor(list, listTitle, manager) {
     this.errors = {};
     this.list = list;
     this.listTitle = listTitle;
+    this.manager = manager;
+    manager.errorList = this
 
     this.generateErrorList();
   }

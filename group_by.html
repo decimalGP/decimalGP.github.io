@@ -43,7 +43,7 @@
   
       <div>
         <h5>Result Table</h5>
-        <table id="resultTable" class="droppableTable"></table>  
+        <table id="resultTable_not_join" class="droppableTable"></table>  
       </div>
 
       <br>
@@ -70,7 +70,8 @@
 
     const errorList = new ErrorList(
       document.getElementById("errorList"),
-      document.getElementById("errorListTitle")
+      document.getElementById("errorListTitle"),
+      manager
     );
 
     const sourceTable1 = new GroupBySourceTable(
@@ -90,7 +91,7 @@
     );
 
     const targetTable = new GroupByTargetTable(
-      document.getElementById("resultTable"),
+      document.getElementById("resultTable_not_join"),
       [sourceTable1],
       manager,
       2,

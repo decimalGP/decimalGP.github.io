@@ -64,7 +64,7 @@ class GroupBySourceTable extends SourceTable {
 
     let rowCorrect = countValue == targetTable.groupByData[groupByValue];
     let row = targetTable.table.rows[rowIndex];
-    SourceTable.setRowCorrect(row, rowCorrect);
+    Helper.setRowCorrect(row, rowCorrect);
 
     if (rowCorrect) {
       this.errorList.removeError(rowIndex);

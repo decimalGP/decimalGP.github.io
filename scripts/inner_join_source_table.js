@@ -23,17 +23,17 @@ class InnerJoinSourceTable extends SourceTable {
     }
     else {
       if (compareCell1 === compareCell2) {
-        SourceTable.setRowCorrect(this.targetRow, true);
+        Helper.setRowCorrect(this.targetRow, true);
 
         this.errorList.removeError(this.targetRowID);
       }
       else {
-        this.setRowCorrect(this.targetRow, false);
+        Helper.setRowCorrect(this.targetRow, false);
 
         this.errorList.addError(
           this.targetRowID,
           "Error on row " + this.targetRowID + ": Books.AuthorID != Authors.ID",
-          "Find a row in Authors table with ID " + compareCell1
+          "Press the reset button next to row " + this.targetRowID + " to reset the row"
         );
       }
     }

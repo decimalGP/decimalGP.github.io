@@ -19,12 +19,12 @@ class SourceTable extends Table {
     this.mouseMoveListener = this.mouseMoveHandler.bind(this);
     this.mouseUpListener = this.mouseUpHandler.bind(this);
 
-    let rows = table.querySelectorAll('tr');
+    let rows = table.querySelectorAll("tr");
     for (let i = 0; i < rows.length; ++i) {
       // Ignore header
       if (i === 0) continue;
 
-      rows[i].addEventListener('mousedown', this.mouseDownListener);
+      rows[i].addEventListener("mousedown", this.mouseDownListener);
     }
 
     // Each cell updates its width dynamically, so we need to set each td width to the widest td in that column
@@ -42,7 +42,7 @@ class SourceTable extends Table {
 
       // Set the width of all cells in the column
       for (let j = 0; j < table.rows.length; j++) {
-        table.rows[j].cells[i].style.width = maxWidth + 'px';
+        table.rows[j].cells[i].style.width = maxWidth + "px";
       }
     }
 
@@ -51,10 +51,10 @@ class SourceTable extends Table {
 
     this.cloneTable = table.cloneNode(true);
 
-    this.cloneTable.style.position = 'absolute';
+    this.cloneTable.style.position = "absolute";
     this.cloneTable.style.left = `${rect.left}px`;
     this.cloneTable.style.top = `${rect.top}px`;
-    this.cloneTable.style.visibility = 'hidden';
+    this.cloneTable.style.visibility = "hidden";
 
     table.parentNode.insertBefore(this.cloneTable, table);
 
@@ -65,7 +65,8 @@ class SourceTable extends Table {
     });
 
     let sourceDiv = document.getElementById("source-div");
-    sourceDiv.style.height = Math.max(sourceDiv.offsetHeight, this.table.offsetHeight) + "px";
+    sourceDiv.style.height =
+      Math.max(sourceDiv.offsetHeight, this.table.offsetHeight) + "px";
   }
 
   mouseDownHandler(event) {
@@ -75,8 +76,8 @@ class SourceTable extends Table {
     this.mouseToElementX = event.pageX - rect.left;
     this.mouseToElementY = event.pageY - rect.top;
 
-    document.addEventListener('mousemove', this.mouseMoveListener);
-    document.addEventListener('mouseup', this.mouseUpListener);
+    document.addEventListener("mousemove", this.mouseMoveListener);
+    document.addEventListener("mouseup", this.mouseUpListener);
   }
 
   mouseMoveHandler(event) {
@@ -86,31 +87,30 @@ class SourceTable extends Table {
       this.toggleCloneTable(true);
     }
 
-    this.draggingElement.style.position = 'absolute';
+    this.draggingElement.style.position = "absolute";
     this.draggingElement.style.top = `${event.pageY - this.mouseToElementY}px`;
     this.draggingElement.style.left = `${event.pageX - this.mouseToElementX}px`;
-    this.draggingElement.style.cursor = 'grabbing';
+    this.draggingElement.style.cursor = "grabbing";
 
     // Add highlighter to target row
     if (!this.updateTarget(event)) return;
-    this.targetRow.classList.add('selectedRow');
+    this.targetRow.classList.add("selectedRow");
   }
 
   toggleCloneTable(isOn) {
     if (isOn) {
-      this.cloneTable.style.visibility = 'visible';
-      this.draggingElement.style.visibility = 'visible';
-      this.table.style.visibility = 'collapse';
-    }
-    else {
-      this.cloneTable.style.visibility = 'hidden';
-      this.table.style.visibility = 'visible';
+      this.cloneTable.style.visibility = "visible";
+      this.draggingElement.style.visibility = "visible";
+      this.table.style.visibility = "collapse";
+    } else {
+      this.cloneTable.style.visibility = "hidden";
+      this.table.style.visibility = "visible";
     }
   }
 
   updateTarget(event) {
     if (this.targetRow != null) {
-      this.targetRow.classList.remove('selectedRow');
+      this.targetRow.classList.remove("selectedRow");
     }
 
     this.targetCell = null;
@@ -123,12 +123,13 @@ class SourceTable extends Table {
 
     var [cell, row, table] = tableTuple;
 
-
     this.targetCell = cell;
     this.targetRow = row;
     this.targetTable = table;
 
-    this.targetRowID = [].slice.call(table.querySelectorAll('tr')).indexOf(this.targetRow);
+    this.targetRowID = [].slice
+      .call(table.querySelectorAll("tr"))
+      .indexOf(this.targetRow);
 
     return true;
   }
@@ -137,13 +138,13 @@ class SourceTable extends Table {
     this.toggleCloneTable(false);
     this.hasDraggingStarted = false;
 
-    this.draggingElement.style.removeProperty('top');
-    this.draggingElement.style.removeProperty('left');
-    this.draggingElement.style.removeProperty('position');
-    this.draggingElement.style.removeProperty('cursor');
+    this.draggingElement.style.removeProperty("top");
+    this.draggingElement.style.removeProperty("left");
+    this.draggingElement.style.removeProperty("position");
+    this.draggingElement.style.removeProperty("cursor");
 
-    document.removeEventListener('mousemove', this.mouseMoveListener);
-    document.removeEventListener('mouseup', this.mouseUpListener);
+    document.removeEventListener("mousemove", this.mouseMoveListener);
+    document.removeEventListener("mouseup", this.mouseUpListener);
 
     if (!this.updateTarget(event)) return;
 
@@ -154,18 +155,6 @@ class SourceTable extends Table {
     this.draggingElement = null;
   }
 
-  /// Set the display of the row according to the value
-  static setRowCorrect(row, value) {
-    if (value == true) {
-      row.classList.remove("incorrect");
-      row.classList.add("correct");
-    }
-    else {
-      row.classList.remove("correct");
-      row.classList.add("incorrect");
-    }
-  }
-
   /// Override in child classes
-  updateTargetRow() { }
+  updateTargetRow() {}
 }
