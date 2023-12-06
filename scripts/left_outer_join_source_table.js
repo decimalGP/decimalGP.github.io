@@ -22,12 +22,12 @@ class LeftOuterJoinSourceTable extends SourceTable {
     }
     // If there is no match in the right source table, set row to true since it's left outer join
     if (!this.keyExistInOtherTable(compareCell1) && compareCell2 == "-" && this.sourceIndex == 0) {
-      SourceTable.setRowCorrect(this.targetRow, true);
+      Helper.setRowCorrect(this.targetRow, true);
       this.errorList.removeError(this.targetRowID);
     }
     // If there is no match in the left source table, set row to false
     else if (!this.keyExistInOtherTable(compareCell2) && this.sourceIndex == 1) {
-      SourceTable.setRowCorrect(this.targetRow, false);
+      Helper.setRowCorrect(this.targetRow, false);
 
       this.errorList.addError(
         this.targetRowID,
@@ -38,11 +38,11 @@ class LeftOuterJoinSourceTable extends SourceTable {
     // Standard matching id check 
     else {
       if (compareCell1 === compareCell2) {
-        SourceTable.setRowCorrect(this.targetRow, true);
+        Helper.setRowCorrect(this.targetRow, true);
         this.errorList.removeError(this.targetRowID);
       }
       else if (this.sourceIndex == 0 && compareCell2 != "-" || this.sourceIndex == 1 && compareCell1 != "-") {
-        SourceTable.setRowCorrect(this.targetRow, false);
+        Helper.setRowCorrect(this.targetRow, false);
 
         this.errorList.addError(
           this.targetRowID,

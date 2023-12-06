@@ -15,7 +15,7 @@ class HavingSourceTable extends GroupBySourceTable {
         }
         else {
             let row = targetTable.table.rows[rowIndex];
-            SourceTable.setRowCorrect(row, false);
+            Helper.setRowCorrect(row, false);
             this.errorList.addError(
                 rowIndex,
                 "Error on row " + rowIndex,

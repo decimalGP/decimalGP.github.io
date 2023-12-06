@@ -23,12 +23,12 @@ class InnerJoinSourceTable extends SourceTable {
     }
     else {
       if (compareCell1 === compareCell2) {
-        SourceTable.setRowCorrect(this.targetRow, true);
+        Helper.setRowCorrect(this.targetRow, true);
 
         this.errorList.removeError(this.targetRowID);
       }
       else {
-        SourceTable.setRowCorrect(this.targetRow, false);
+        Helper.setRowCorrect(this.targetRow, false);
 
         this.errorList.addError(
           this.targetRowID,

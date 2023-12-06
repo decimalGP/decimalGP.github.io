@@ -155,17 +155,6 @@ class SourceTable extends Table {
     this.draggingElement = null;
   }
 
-  /// Set the display of the row according to the value
-  static setRowCorrect(row, value) {
-    if (value == true) {
-      row.classList.remove("incorrect");
-      row.classList.add("correct");
-    } else {
-      row.classList.remove("correct");
-      row.classList.add("incorrect");
-    }
-  }
-
   /// Override in child classes
   updateTargetRow() {}
 }
