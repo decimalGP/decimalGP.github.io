@@ -22,18 +22,27 @@ class Helper {
 
   // Remove correct and incorrect style for row (for the reset button)
   static removeRowDisplay(row) {
-    row.classList.remove("correct");
-    row.classList.remove("incorrect");
+    var cells = row.getElementsByTagName("td");
+    for (var i = 0; i < cells.length - 1; i++) {
+      cells[i].classList.remove("correct");
+      cells[i].classList.remove("incorrect");
+    }
   }
 
   /// Set the display of the row according to the value
   static setRowCorrect(row, value) {
+    var cells = row.getElementsByTagName("td");
     if (value == true) {
-      row.classList.remove("incorrect");
-      row.classList.add("correct");
+      // Minus one to exclude the button column
+      for (var i = 0; i < cells.length - 1; i++) {
+        cells[i].classList.remove("incorrect");
+        cells[i].classList.add("correct");
+      }
     } else {
-      row.classList.remove("correct");
-      row.classList.add("incorrect");
+      for (var i = 0; i < cells.length - 1; i++) {
+        cells[i].classList.remove("correct");
+        cells[i].classList.add("incorrect");
+      }
     }
   }
 }
